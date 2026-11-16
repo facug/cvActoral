@@ -111,23 +111,10 @@
     display: flex; transition: transform .55s cubic-bezier(.2,.7,.2,1);
   }
   .slide {
-  flex: 0 0 100%;
-  margin: 0;
-  position: relative;
-  aspect-ratio: 4 / 5;
-  max-height: 80vh;
-  width: 100%;
-  overflow: hidden;
-}
-.slide img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  user-select: none;
-  -webkit-user-drag: none;
-}
+    flex: 0 0 100%; margin: 0; position: relative;
+    aspect-ratio: 4 / 5; max-height: 80vh; width: 100%;
+  }
+  .slide img { width: 100%; height: 100%; object-fit: cover; user-select: none; -webkit-user-drag: none; }
   .slide .ph {
     position: absolute; inset: 0; display: none;
     align-items: center; justify-content: center; text-align: center; padding: 20px;
@@ -252,7 +239,7 @@
   <div class="wrap">
     <div class="avatar" aria-hidden="true">
       <span>FGM</span>
-      <img src="headshot.jpg" alt="" onerror="this.remove()">
+      <img src="fotos/headshot.jpg" alt="" onerror="this.remove()">
     </div>
     <div>
       <h1>Facundo Gabriel Monzón</h1>
@@ -390,15 +377,20 @@
   /* ============ CONFIGURACIÓN DEL BOOK ============
      Poné tus fotos en la carpeta "fotos/" y editá esta lista.
      Si una imagen no existe, se muestra un marcador en su lugar. */
-  const FOTOS = [ 
-{ src: "book-01.jpg", alt: "Foto", caption: "Retrato" },
-{ src: "book-02.jpg", alt: "Malote", caption: "Mala onda" },
-{ src: "book-03.jpg", alt: "Foto", caption: "Retrato" },
-{ src: "book-05.jpg", alt: "Foto", caption: "Pose" },
-{ src: "1769194016959.jpg", alt: "Foto", caption: "Bufon" },
-{ src: "DESPELOTE - FACUNDO MONZON.jpg", alt: "Foto", caption: "Payaso" },
-{ src: "Facundo Monzon-109-2.jpg", alt: "Foto", caption: "Risa" },
-{ src: "IMG_5195.jpg", alt: "Foto", caption: "pirueta" }
+  const FOTOS = [
+    { src: "fotos/book-01.jpg", alt: "Retrato" },
+    { src: "fotos/book-02.jpg", alt: "Denim" },
+    { src: "fotos/book-03.jpg", alt: "Movimiento" },
+    { src: "fotos/book-04.jpg", alt: "Sonrisa" },
+    { src: "fotos/book-05.jpg", alt: "Falda" },
+    { src: "fotos/book-06.jpg", alt: "Clown" },
+    { src: "fotos/book-07.jpg", alt: "Llanto" },
+    { src: "fotos/book-08.jpg", alt: "Gesto" },
+    { src: "fotos/book-09.jpg", alt: "Acrobacia" },
+    { src: "fotos/book-10.jpg", alt: "Risa" },
+    { src: "fotos/book-11.jpg", alt: "Uniforme" },
+    { src: "fotos/book-12.jpg", alt: "Salto" },
+    { src: "fotos/book-13.jpg", alt: "Camiseta" }
   ];
 
   /* ============ CARRUSEL ============ */
@@ -421,17 +413,14 @@
       const img = document.createElement("img");
       img.src = f.src;
       img.alt = f.alt;
-      img.loading = "eager";
+      img.loading = i === 0 ? "eager" : "lazy";
       img.onerror = () => fig.classList.add("missing");
 
       const ph = document.createElement("div");
       ph.className = "ph";
       ph.textContent = `Falta la imagen: ${f.src}`;
 
-      const cap = document.createElement("figcaption");
-      cap.textContent = f.caption;
-
-      fig.append(img, ph, cap);
+      fig.append(img, ph);
       track.appendChild(fig);
 
       const dot = document.createElement("button");
