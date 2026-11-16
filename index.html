@@ -421,7 +421,7 @@
       const img = document.createElement("img");
       img.src = f.src;
       img.alt = f.alt;
-      img.loading = i === 0 ? "eager";
+      img.loading = "eager";
       img.onerror = () => fig.classList.add("missing");
 
       const ph = document.createElement("div");
