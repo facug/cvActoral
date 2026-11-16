@@ -111,10 +111,23 @@
     display: flex; transition: transform .55s cubic-bezier(.2,.7,.2,1);
   }
   .slide {
-    flex: 0 0 100%; margin: 0; position: relative;
-    aspect-ratio: 4 / 5; max-height: 80vh; width: 100%;
-  }
-  .slide img { width: 100%; height: 100%; object-fit: cover; user-select: none; -webkit-user-drag: none; }
+  flex: 0 0 100%;
+  margin: 0;
+  position: relative;
+  aspect-ratio: 4 / 5;
+  max-height: 80vh;
+  width: 100%;
+  overflow: hidden;
+}
+.slide img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  -webkit-user-drag: none;
+}
   .slide .ph {
     position: absolute; inset: 0; display: none;
     align-items: center; justify-content: center; text-align: center; padding: 20px;
@@ -408,7 +421,7 @@
       const img = document.createElement("img");
       img.src = f.src;
       img.alt = f.alt;
-      img.loading = i === 0 ? "eager" : "lazy";
+      img.loading = i === 0 ? "eager";
       img.onerror = () => fig.classList.add("missing");
 
       const ph = document.createElement("div");
